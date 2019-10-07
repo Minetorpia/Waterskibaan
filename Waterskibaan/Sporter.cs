@@ -10,7 +10,7 @@ namespace Waterskibaan
     {
         public int AantalRondenNogTeGaan { get; set; }
         public Zwemvest MyProperty { get; set; }
-        public Color KledingKleur { get; set; }
+        /*public Color KledingKleur { get; set; }*/
         public List<IMoves> Moves { get; set; }
 
         public Sporter(List<IMoves> moves)
