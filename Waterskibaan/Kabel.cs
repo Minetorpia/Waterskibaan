@@ -45,7 +45,6 @@ namespace Waterskibaan
                     _lijnen.RemoveLast();
                     break;
                 }
-                    
             }
         }
 

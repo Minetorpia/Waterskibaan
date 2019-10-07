@@ -12,6 +12,9 @@ namespace Waterskibaan
         {
             TestOpdracht2();
             TestOpdracht3();
+            List<IMoves> moves = MoveCollection.GetWillekeurigeMoves();
+            foreach (IMoves move in moves)
+                move.Move();
         }
 
         private static void TestOpdracht2()
