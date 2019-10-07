@@ -24,7 +24,7 @@ namespace Waterskibaan
         public void VerplaatsKabel()
         {
             kabel.VerschuifLijnen();
-            lijnenVoorraad.LijnToevoegenAanRij(kabel.VerwijderLijnVanKabel());      
+            lijnenVoorraad.LijnToevoegenAanRij(kabel.VerwijderLijnVanKabel());
         }
 
 
@@ -36,6 +36,21 @@ namespace Waterskibaan
             returnString += kabel.ToString();
             returnString += "------------------------------";
             return returnString;
+        }
+
+
+        public void SporterStart(Sporter sp)
+        {
+            if(kabel.IsStartPositieLeeg())
+            {
+                Lijn nieuweLijn = lijnenVoorraad.VerwijderEersteLijn();
+                nieuweLijn.Sporter = sp;
+
+                Random r = new Random();
+                int aantalRondes = r.Next(1, 2);
+
+                kabel.NeemLijnInGebruik(nieuweLijn);
+            }
         }
     }
 }
