@@ -1,7 +1,0 @@
-C:\Users\Ruben\Documents\Windesheim\Jaar 2\Semester 1\Periode 1\C#\Waterskibaan\Waterskibaan\obj\Debug\Waterskibaan.csprojAssemblyReference.cache
-C:\Users\Ruben\Documents\Windesheim\Jaar 2\Semester 1\Periode 1\C#\Waterskibaan\Waterskibaan\obj\Debug\Waterskibaan.csproj.CoreCompileInputs.cache
-C:\Users\Ruben\Documents\Windesheim\Jaar 2\Semester 1\Periode 1\C#\Waterskibaan\Waterskibaan\bin\Debug\Waterskibaan.exe.config
-C:\Users\Ruben\Documents\Windesheim\Jaar 2\Semester 1\Periode 1\C#\Waterskibaan\Waterskibaan\bin\Debug\Waterskibaan.exe
-C:\Users\Ruben\Documents\Windesheim\Jaar 2\Semester 1\Periode 1\C#\Waterskibaan\Waterskibaan\bin\Debug\Waterskibaan.pdb
-C:\Users\Ruben\Documents\Windesheim\Jaar 2\Semester 1\Periode 1\C#\Waterskibaan\Waterskibaan\obj\Debug\Waterskibaan.exe
-C:\Users\Ruben\Documents\Windesheim\Jaar 2\Semester 1\Periode 1\C#\Waterskibaan\Waterskibaan\obj\Debug\Waterskibaan.pdb

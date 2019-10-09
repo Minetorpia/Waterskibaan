@@ -41,20 +41,19 @@ namespace Waterskibaan
                 else
                 {
                     lijn.PositieOpDeKabel = 0;
+                    lijn.Sporter.AantalRondenNogTeGaan--;
                     NeemLijnInGebruik(lijn);
                     _lijnen.RemoveLast();
                     break;
                 }
-                    
             }
         }
 
         public Lijn VerwijderLijnVanKabel()
         {
-            Lijn lastLijn = null;
-            if (_lijnen.Last().PositieOpDeKabel == 9)
+            Lijn lastLijn = _lijnen.Last();
+            if (_lijnen.Last().PositieOpDeKabel == 9 && lastLijn.Sporter.AantalRondenNogTeGaan == 0)
             {
-                lastLijn = _lijnen.Last();
                 _lijnen.RemoveLast();
             }
             return lastLijn;
