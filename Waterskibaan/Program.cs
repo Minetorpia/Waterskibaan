@@ -13,7 +13,8 @@ namespace Waterskibaan
             /*TestOpdracht2();
             TestOpdracht3();
             TestOpdracht4();*/
-            TestOpdracht8();
+            /*TestOpdracht8();*/
+            TestOpdracht9();
 
         }
 
@@ -60,7 +61,23 @@ namespace Waterskibaan
 
             waterskibaan.SporterStart(sporter);
             waterskibaan.VerplaatsKabel();
+        }
 
+        private static void TestOpdracht9()
+        {
+            Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), "rood");
+            Sporter sporter1 = new Sporter(MoveCollection.GetWillekeurigeMoves(), "blauw");
+
+
+            WachtrijInstructie wachtrijInstructie = new WachtrijInstructie();
+            wachtrijInstructie.SporterNeemPlaatsInRij(sporter);
+            wachtrijInstructie.SporterNeemPlaatsInRij(sporter1);
+
+            foreach (Sporter s in wachtrijInstructie.GetAlleSporters())
+                Console.WriteLine(s.AantalRondenNogTeGaan);
+
+            Console.WriteLine(wachtrijInstructie.ToString());
         }
     }
+
 }
