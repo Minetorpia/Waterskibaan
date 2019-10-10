@@ -9,6 +9,7 @@ namespace Waterskibaan
     class LijnenVoorraad
     {
         private Queue<Lijn> _lijnen = new Queue<Lijn>();
+        
 
         public void LijnToevoegenAanRij(Lijn lijn)
         {
@@ -22,7 +23,6 @@ namespace Waterskibaan
                 return _lijnen.Dequeue();
             else
                 return null;
-
         }
 
 

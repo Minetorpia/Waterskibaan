@@ -28,6 +28,7 @@ namespace Waterskibaan
         {
             if(IsStartPositieLeeg())
             {
+                lijn.PositieOpDeKabel = 0;
                 _lijnen.AddFirst(lijn);
             }
         }
@@ -40,10 +41,11 @@ namespace Waterskibaan
                     lijn.PositieOpDeKabel += 1;
                 else
                 {
+                    /*Check if sporter still allowed another round*/
                     lijn.PositieOpDeKabel = 0;
                     lijn.Sporter.AantalRondenNogTeGaan--;
-                    NeemLijnInGebruik(lijn);
                     _lijnen.RemoveLast();
+                    NeemLijnInGebruik(lijn);
                     break;
                 }
             }
@@ -52,11 +54,15 @@ namespace Waterskibaan
         public Lijn VerwijderLijnVanKabel()
         {
             Lijn lastLijn = _lijnen.Last();
-            if (_lijnen.Last().PositieOpDeKabel == 9 && lastLijn.Sporter.AantalRondenNogTeGaan == 0)
+            if ((_lijnen.Last().PositieOpDeKabel == 9 || _lijnen.Last().PositieOpDeKabel == 0) && lastLijn.Sporter.AantalRondenNogTeGaan == 0)
             {
                 _lijnen.RemoveLast();
+                return lastLijn;
+            } else
+            {
+                return null;
             }
-            return lastLijn;
+            
         }
 
         public override string ToString()
@@ -65,9 +71,9 @@ namespace Waterskibaan
             foreach(Lijn lijn in _lijnen)
             {
                 if (lijn != _lijnen.Last())
-                    returnString += $"{lijn.PositieOpDeKabel}|";
+                    returnString += $"{lijn.PositieOpDeKabel}({lijn.Sporter.Id}, {lijn.Sporter.AantalRondenNogTeGaan})|";
                 else
-                    returnString += lijn.PositieOpDeKabel;
+                    returnString += $"{lijn.PositieOpDeKabel}({lijn.Sporter.Id}, {lijn.Sporter.AantalRondenNogTeGaan})";
             }
             return returnString;
         }

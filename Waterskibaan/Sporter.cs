@@ -13,11 +13,18 @@ namespace Waterskibaan
         public string KledingKleur { get; set; }
         public Skies Skies { get; set; }
         public List<IMoves> Moves { get; set; }
+        public int Id { get; private set; }
 
         public Sporter(List<IMoves> moves, string kledingKleur)
         {
+
             Moves = moves;
             KledingKleur = kledingKleur;
+            Zwemvest = new Zwemvest();
+            Skies = new Skies();
+
+            Random r = new Random();
+            Id = r.Next(0, 10);
         }
     }
 }
