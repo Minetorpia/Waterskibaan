@@ -8,12 +8,13 @@ namespace Waterskibaan
 {
     public class WachtrijStarten : Wachtrij
     {
-        private const int MAX_LENGTE_RIJ = 100;
+        private const int MAX_LENGTE_RIJ = 20;
 
         public override void SporterNeemPlaatsInRij(Sporter sporter)
         {
             if (sporters.Count() < MAX_LENGTE_RIJ)
                 sporters.Enqueue(sporter);
         }
+
     }
 }

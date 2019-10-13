@@ -15,5 +15,19 @@ namespace Waterskibaan
             if (sporters.Count() < MAX_LENGTE_RIJ)
                 sporters.Enqueue(sporter);
         }
+
+        public void InstructieAfgelopenHandler(InstructieAfgelopenArgs args)
+        {
+            if (sporters.Count() > 0)
+            {
+                args.InstructedSporters = SportersVerlatenRij(5);
+            }
+
+            foreach (Sporter sporter in args.NewUninstructedSpelers)
+            {
+                SporterNeemPlaatsInRij(sporter);
+            } 
+
+        }
     }
 }

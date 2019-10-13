@@ -10,6 +10,6 @@ namespace Waterskibaan
     {
         void SporterNeemPlaatsInRij(Sporter sporter);
         List<Sporter> GetAlleSporters();
-        List<Sporter> SpottersVerlatenRij(int aantal);
+        List<Sporter> SportersVerlatenRij(int aantal);
     }
 }

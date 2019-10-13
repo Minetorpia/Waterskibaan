@@ -11,6 +11,9 @@ namespace Waterskibaan
         private LijnenVoorraad lijnenVoorraad = new LijnenVoorraad();
         private Kabel kabel = new Kabel();
         public LijnenVoorraad LijnenVoorraad { get; private set; }
+        public Kabel Kabel {
+            get { return kabel; }
+            private set { kabel = value; } }
 
         public Waterskibaan()
         {
@@ -26,7 +29,11 @@ namespace Waterskibaan
             Lijn removableLijn = kabel.VerwijderLijnVanKabel();
 
             if (removableLijn != null)
+            {
                 lijnenVoorraad.LijnToevoegenAanRij(removableLijn);
+                Console.WriteLine("Plek vrijgemaakt");
+            }
+                 
 
             kabel.VerschuifLijnen();
         }

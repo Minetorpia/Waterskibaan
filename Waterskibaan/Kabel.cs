@@ -53,15 +53,23 @@ namespace Waterskibaan
 
         public Lijn VerwijderLijnVanKabel()
         {
-            Lijn lastLijn = _lijnen.Last();
-            if ((_lijnen.Last().PositieOpDeKabel == 9 || _lijnen.Last().PositieOpDeKabel == 0) && lastLijn.Sporter.AantalRondenNogTeGaan == 0)
+            Lijn lastLijn = null;
+            if (_lijnen.Count > 1)
             {
-                _lijnen.RemoveLast();
-                return lastLijn;
-            } else
-            {
-                return null;
+                lastLijn = _lijnen.Last();
+                if ((_lijnen.Last().PositieOpDeKabel == 9 || _lijnen.Last().PositieOpDeKabel == 0) && lastLijn.Sporter.AantalRondenNogTeGaan == 0)
+                {
+                    _lijnen.RemoveLast();
+                    return lastLijn;
+                }
+                else
+                {
+                    return null;
+                }
             }
+            else
+                return null;
+            
             
         }
 

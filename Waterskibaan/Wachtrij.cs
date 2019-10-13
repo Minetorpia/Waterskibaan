@@ -18,15 +18,16 @@ namespace Waterskibaan
         public abstract void SporterNeemPlaatsInRij(Sporter sporter);
 
 
-        public List<Sporter> SpottersVerlatenRij(int aantal)
+        public List<Sporter> SportersVerlatenRij(int aantal)
         {
             List<Sporter> leavingSporters = new List<Sporter>();
 
-            if (aantal > sporters.Count())
-                throw new ArgumentException("Amount of sporters to leave is larger than amount of sporters in Queue");
             for (int i = 0; i < aantal; i++)
             {
-                leavingSporters.Add(sporters.Dequeue());
+                if (i < aantal && sporters.Count > 0)
+                    leavingSporters.Add(sporters.Dequeue());
+                else
+                    break;
             }
 
             return leavingSporters;
