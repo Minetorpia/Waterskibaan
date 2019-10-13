@@ -29,11 +29,7 @@ namespace Waterskibaan
             Lijn removableLijn = kabel.VerwijderLijnVanKabel();
 
             if (removableLijn != null)
-            {
                 lijnenVoorraad.LijnToevoegenAanRij(removableLijn);
-                Console.WriteLine("Plek vrijgemaakt");
-            }
-                 
 
             kabel.VerschuifLijnen();
         }

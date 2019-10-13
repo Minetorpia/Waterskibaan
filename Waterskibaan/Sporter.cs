@@ -32,7 +32,7 @@ namespace Waterskibaan
             if (Moves.Count > 0)
             {
                 Random r = new Random();
-                HuidigeMove = Moves[r.Next(0, Moves.Count + 1)];
+                HuidigeMove = Moves[r.Next(0, Moves.Count)];
                 totalScore += HuidigeMove.Move();
             }
 

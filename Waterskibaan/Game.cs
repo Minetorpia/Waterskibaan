@@ -95,7 +95,6 @@ namespace Waterskibaan
         
         public void OnTimedEventVerplaatsLijnen(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("Lijnen verplaatst!");
             waterskibaan.VerplaatsKabel();
             if (waterskibaan.Kabel.IsStartPositieLeeg() && wachtrijStarten.GetAlleSporters().Count > 0)
             {

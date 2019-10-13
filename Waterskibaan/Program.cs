@@ -10,11 +10,6 @@ namespace Waterskibaan
     {
         static void Main(string[] args)
         {
-            /*TestOpdracht2();
-            TestOpdracht3();
-            TestOpdracht4();*/
-            /*TestOpdracht8();*/
-            /*TestOpdracht9();*/
             Game game = new Game();
             game.Initialize();
 
