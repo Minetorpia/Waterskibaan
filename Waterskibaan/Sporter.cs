@@ -22,7 +22,7 @@ namespace Waterskibaan
             Moves = moves;
 
             KledingKleur = new Tuple<byte, byte, byte>(Convert.ToByte(r.Next(0, 256)), Convert.ToByte(r.Next(0, 256)), Convert.ToByte(r.Next(0, 256)));
-            Id = r.Next(0, 10);
+            Id = r.Next(0, 101);
         }
 
         public int Move()

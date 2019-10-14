@@ -29,6 +29,7 @@ namespace Waterskibaan
         public WachtrijInstructie WachtrijInstructie { get => wachtrijInstructie; private set => wachtrijInstructie = value; }
         public InstructieGroep InstructieGroep { get => instructieGroep; private set => instructieGroep = value; }
         public WachtrijStarten WachtrijStarten { get => wachtrijStarten; private set => wachtrijStarten = value; }
+        public Waterskibaan Waterskibaan { get => waterskibaan; private set => waterskibaan = value; }
 
         public void Initialize()
         {
@@ -55,7 +56,7 @@ namespace Waterskibaan
 
         public Timer CreateAndSetTimer(int ms, ElapsedEventHandler elapsedEventHandler)
         {
-            Timer timer = new Timer(ms);
+            Timer timer = new Timer(ms/10);
             timer.Elapsed += elapsedEventHandler;
             timer.AutoReset = true;
             timer.Enabled = true;
@@ -98,14 +99,14 @@ namespace Waterskibaan
         
         public void OnTimedEventVerplaatsLijnen(object source, ElapsedEventArgs e)
         {
-            waterskibaan.VerplaatsKabel();
-            if (waterskibaan.Kabel.IsStartPositieLeeg() && WachtrijStarten.GetAlleSporters().Count > 0)
+            Waterskibaan.VerplaatsKabel();
+            if (Waterskibaan.Kabel.IsStartPositieLeeg() && WachtrijStarten.GetAlleSporters().Count > 0)
             {
                 PrintGameStatus();
                 Sporter instructedSporter = WachtrijStarten.SportersVerlatenRij(1)[0];
                 instructedSporter.Skies = new Skies();
                 instructedSporter.Zwemvest = new Zwemvest();
-                waterskibaan.SporterStart(instructedSporter);
+                Waterskibaan.SporterStart(instructedSporter);
             }
 
 

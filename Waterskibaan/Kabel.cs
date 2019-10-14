@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Kabel
+    public class Kabel
     {
-        private LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
+        private LinkedList<Lijn> lijnen = new LinkedList<Lijn>();
+
+        public LinkedList<Lijn> Lijnen { get => lijnen; set => lijnen = value; }
 
         public bool IsStartPositieLeeg()
         {
-            if (_lijnen.Count >= 1)
+            if (Lijnen.Count >= 1)
             {
-                if (_lijnen.First().PositieOpDeKabel == 0)
+                if (Lijnen.First().PositieOpDeKabel == 0)
                     return false;
                 else
                     return true;
@@ -29,13 +31,13 @@ namespace Waterskibaan
             if(IsStartPositieLeeg())
             {
                 lijn.PositieOpDeKabel = 0;
-                _lijnen.AddFirst(lijn);
+                Lijnen.AddFirst(lijn);
             }
         }
 
         public void VerschuifLijnen()
         {
-            foreach (Lijn lijn in _lijnen)
+            foreach (Lijn lijn in Lijnen)
             {
                 if (lijn.PositieOpDeKabel != 9)
                     lijn.PositieOpDeKabel += 1;
@@ -44,7 +46,7 @@ namespace Waterskibaan
                     /*Check if sporter still allowed another round*/
                     lijn.PositieOpDeKabel = 0;
                     lijn.Sporter.AantalRondenNogTeGaan--;
-                    _lijnen.RemoveLast();
+                    Lijnen.RemoveLast();
                     NeemLijnInGebruik(lijn);
                     break;
                 }
@@ -54,12 +56,12 @@ namespace Waterskibaan
         public Lijn VerwijderLijnVanKabel()
         {
             Lijn lastLijn = null;
-            if (_lijnen.Count > 1)
+            if (Lijnen.Count > 1)
             {
-                lastLijn = _lijnen.Last();
-                if ((_lijnen.Last().PositieOpDeKabel == 9 || _lijnen.Last().PositieOpDeKabel == 0) && lastLijn.Sporter.AantalRondenNogTeGaan == 0)
+                lastLijn = Lijnen.Last();
+                if ((Lijnen.Last().PositieOpDeKabel == 9 || Lijnen.Last().PositieOpDeKabel == 0) && lastLijn.Sporter.AantalRondenNogTeGaan == 0)
                 {
-                    _lijnen.RemoveLast();
+                    Lijnen.RemoveLast();
                     return lastLijn;
                 }
                 else
@@ -76,9 +78,9 @@ namespace Waterskibaan
         public override string ToString()
         {
             string returnString = "";
-            foreach(Lijn lijn in _lijnen)
+            foreach(Lijn lijn in Lijnen)
             {
-                if (lijn != _lijnen.Last())
+                if (lijn != Lijnen.Last())
                     returnString += $"{lijn.PositieOpDeKabel}({lijn.Sporter.Id}, {lijn.Sporter.AantalRondenNogTeGaan})|";
                 else
                     returnString += $"{lijn.PositieOpDeKabel}({lijn.Sporter.Id}, {lijn.Sporter.AantalRondenNogTeGaan})";

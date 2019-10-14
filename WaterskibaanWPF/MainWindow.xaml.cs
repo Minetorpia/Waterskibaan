@@ -49,7 +49,7 @@ namespace WaterskibaanWPF
             UpdateWachtrij(game.WachtrijStarten, SPWachtrijStarten);
             UpdateWachtrijLabel(game.WachtrijInstructie, LabelWachtrijInstructie);
             UpdateWachtrijLabel(game.WachtrijStarten, LabelWachtrijStarten);
-
+            UpdateWaterskibaan();
 
         }
 
@@ -74,6 +74,22 @@ namespace WaterskibaanWPF
         public SolidColorBrush GetSporterBackgroundColor(Sporter sporter)
         {
             return new SolidColorBrush(Color.FromRgb(sporter.KledingKleur.Item1, sporter.KledingKleur.Item2, sporter.KledingKleur.Item3));
+        }
+
+        public void UpdateWaterskibaan()
+        {
+            SPWaterskibaan.Children.Clear();
+            LinkedListNode<Lijn> currentNode = game.Waterskibaan.Kabel.Lijnen.First;
+            while(currentNode != null)
+            {
+                Label label = new Label();
+                Lijn currentLijn = currentNode.Value;
+                label.Content = $"Positie: {currentLijn.PositieOpDeKabel} Sporter: {currentLijn.Sporter.Id} Aantal ronden tegaan {currentLijn.Sporter.AantalRondenNogTeGaan}";
+                label.Background = GetSporterBackgroundColor(currentLijn.Sporter);
+                SPWaterskibaan.Children.Add(label);
+
+                currentNode = currentNode.Next;
+            }
         }
     }
 }
