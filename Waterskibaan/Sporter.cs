@@ -10,7 +10,7 @@ namespace Waterskibaan
     {
         public int AantalRondenNogTeGaan { get; set; }
         public Zwemvest Zwemvest { get; set; }
-        public string KledingKleur { get; set; }
+        public Tuple<byte, byte, byte> KledingKleur { get; set; }
         public Skies Skies { get; set; }
         public List<IMoves> Moves { get; set; }
         public int Id { get; private set; }
@@ -18,25 +18,27 @@ namespace Waterskibaan
 
         public Sporter(List<IMoves> moves, string kledingKleur)
         {
-
-            Moves = moves;
-            KledingKleur = kledingKleur;
-
             Random r = new Random();
+            Moves = moves;
+
+            KledingKleur = new Tuple<byte, byte, byte>(Convert.ToByte(r.Next(0, 256)), Convert.ToByte(r.Next(0, 256)), Convert.ToByte(r.Next(0, 256)));
             Id = r.Next(0, 10);
         }
 
         public int Move()
         {
             int totalScore = 0;
-            if (Moves.Count > 0)
+            Random r = new Random();
+            
+            if(r.Next(0,5) == 0 && Moves.Count > 0)
             {
-                Random r = new Random();
-                HuidigeMove = Moves[r.Next(0, Moves.Count)];
-                totalScore += HuidigeMove.Move();
+                    HuidigeMove = Moves[r.Next(0, Moves.Count)];
+                    totalScore += HuidigeMove.Move();
             }
 
             return totalScore;
         }
+
+
     }
 }

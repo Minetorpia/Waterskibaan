@@ -26,16 +26,19 @@ namespace Waterskibaan
         private InstructieGroep instructieGroep = new InstructieGroep();
         private WachtrijStarten wachtrijStarten = new WachtrijStarten();
 
+        public WachtrijInstructie WachtrijInstructie { get => wachtrijInstructie; private set => wachtrijInstructie = value; }
+        public InstructieGroep InstructieGroep { get => instructieGroep; private set => instructieGroep = value; }
+        public WachtrijStarten WachtrijStarten { get => wachtrijStarten; private set => wachtrijStarten = value; }
 
         public void Initialize()
         {
-            NieuweBezoeker += wachtrijInstructie.NieuweBezoekerHandler;
-            InstructieAfgelopen += instructieGroep.InstructieAfgelopenHandler;
+            NieuweBezoeker += WachtrijInstructie.NieuweBezoekerHandler;
+            InstructieAfgelopen += InstructieGroep.InstructieAfgelopenHandler;
 
             gameTimer = CreateAndSetTimer(3000, OnTimedEventNewBezoeker);
             instructieTimer = CreateAndSetTimer(20000, OnTimedEventInstructieAfgelopen);
             instructieAfgelopenTimer = CreateAndSetTimer(4000, OnTimedEventVerplaatsLijnen);
-
+/*
             Console.WriteLine("\nPress the Enter key to exit the application...\n");
             Console.ReadLine();
             gameTimer.Stop();
@@ -43,7 +46,7 @@ namespace Waterskibaan
             instructieTimer.Stop();
             instructieTimer.Dispose();
             instructieAfgelopenTimer.Stop();
-            instructieAfgelopenTimer.Dispose();
+            instructieAfgelopenTimer.Dispose();*/
 
 
             Console.WriteLine("Terminating the application...");
@@ -52,7 +55,7 @@ namespace Waterskibaan
 
         public Timer CreateAndSetTimer(int ms, ElapsedEventHandler elapsedEventHandler)
         {
-            Timer timer = new Timer(ms/10);
+            Timer timer = new Timer(ms);
             timer.Elapsed += elapsedEventHandler;
             timer.AutoReset = true;
             timer.Enabled = true;
@@ -71,7 +74,7 @@ namespace Waterskibaan
 
         public void OnTimedEventInstructieAfgelopen(object source, ElapsedEventArgs e)
         {
-            List<Sporter> uninstructedSporters = wachtrijInstructie.GetUninstructedSporters();
+            List<Sporter> uninstructedSporters = WachtrijInstructie.GetUninstructedSporters();
 
             if (uninstructedSporters.Count > 0)
             {
@@ -85,7 +88,7 @@ namespace Waterskibaan
                 {
                     foreach (Sporter sporter in instructieAfgelopenArgs.InstructedSporters)
                     {
-                        wachtrijStarten.SporterNeemPlaatsInRij(sporter);
+                        WachtrijStarten.SporterNeemPlaatsInRij(sporter);
                     }
                 }
                 
@@ -96,10 +99,10 @@ namespace Waterskibaan
         public void OnTimedEventVerplaatsLijnen(object source, ElapsedEventArgs e)
         {
             waterskibaan.VerplaatsKabel();
-            if (waterskibaan.Kabel.IsStartPositieLeeg() && wachtrijStarten.GetAlleSporters().Count > 0)
+            if (waterskibaan.Kabel.IsStartPositieLeeg() && WachtrijStarten.GetAlleSporters().Count > 0)
             {
                 PrintGameStatus();
-                Sporter instructedSporter = wachtrijStarten.SportersVerlatenRij(1)[0];
+                Sporter instructedSporter = WachtrijStarten.SportersVerlatenRij(1)[0];
                 instructedSporter.Skies = new Skies();
                 instructedSporter.Zwemvest = new Zwemvest();
                 waterskibaan.SporterStart(instructedSporter);
@@ -111,10 +114,10 @@ namespace Waterskibaan
 
         public void PrintGameStatus()
         {
-            Console.WriteLine(wachtrijInstructie);
-            Console.WriteLine(instructieGroep);
-            Console.WriteLine(wachtrijStarten);
-            int total = wachtrijInstructie.GetAlleSporters().Count + instructieGroep.GetAlleSporters().Count + wachtrijStarten.GetAlleSporters().Count;
+            Console.WriteLine(WachtrijInstructie);
+            Console.WriteLine(InstructieGroep);
+            Console.WriteLine(WachtrijStarten);
+            int total = WachtrijInstructie.GetAlleSporters().Count + InstructieGroep.GetAlleSporters().Count + WachtrijStarten.GetAlleSporters().Count;
             Console.WriteLine($"Totaal: {total}" + "\n");
         }
 
