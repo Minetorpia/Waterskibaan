@@ -10,7 +10,7 @@ namespace Waterskibaan
     {
         private LijnenVoorraad lijnenVoorraad = new LijnenVoorraad();
         private Kabel kabel = new Kabel();
-        public LijnenVoorraad LijnenVoorraad { get; private set; }
+        public LijnenVoorraad LijnenVoorraad { get => lijnenVoorraad; private set => lijnenVoorraad = value; }
         public Kabel Kabel {
             get { return kabel; }
             private set { kabel = value; } }

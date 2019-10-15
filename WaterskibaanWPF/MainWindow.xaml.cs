@@ -50,7 +50,7 @@ namespace WaterskibaanWPF
             UpdateWachtrijLabel(game.WachtrijInstructie, LabelWachtrijInstructie);
             UpdateWachtrijLabel(game.WachtrijStarten, LabelWachtrijStarten);
             UpdateWaterskibaan();
-
+            LabelVooraadNumber.Content = game.Waterskibaan.LijnenVoorraad.GetAantalLijnen();
         }
 
         public void UpdateWachtrij(Wachtrij wachtrij, StackPanel stackPanel)
@@ -85,11 +85,27 @@ namespace WaterskibaanWPF
                 Label label = new Label();
                 Lijn currentLijn = currentNode.Value;
                 label.Content = $"Positie: {currentLijn.PositieOpDeKabel} Sporter: {currentLijn.Sporter.Id} Aantal ronden tegaan {currentLijn.Sporter.AantalRondenNogTeGaan}";
+                if (currentLijn.Sporter.HuidigeMove != null)
+                    label.Content += $" {currentLijn.Sporter.HuidigeMove}";
                 label.Background = GetSporterBackgroundColor(currentLijn.Sporter);
                 SPWaterskibaan.Children.Add(label);
 
                 currentNode = currentNode.Next;
             }
+        }
+
+        private void VersnelButton_Click(object sender, RoutedEventArgs e)
+        {
+            game.gameTimer.Interval /= 2;
+            game.instructieTimer.Interval /= 2;
+            game.instructieAfgelopenTimer.Interval /= 2;
+        }
+
+        private void VertraagButton_Click(object sender, RoutedEventArgs e)
+        {
+            game.gameTimer.Interval *= 2;
+            game.instructieTimer.Interval *= 2;
+            game.instructieAfgelopenTimer.Interval *= 2;
         }
     }
 }

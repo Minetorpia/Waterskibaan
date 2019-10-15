@@ -15,7 +15,7 @@ namespace Waterskibaan
 
         }
 
-        private static void TestOpdracht2()
+       /* private static void TestOpdracht2()
         {
             Kabel kabel = new Kabel();
             for (int i=0; i<9;i++)
@@ -25,9 +25,9 @@ namespace Waterskibaan
                 Lijn l = kabel.VerwijderLijnVanKabel();
             }
             Console.WriteLine(kabel.ToString());
-        }
+        }*/
 
-        private static void TestOpdracht3()
+        /*private static void TestOpdracht3()
         {
             LijnenVoorraad lijnenVoorraad = new LijnenVoorraad();
             Console.WriteLine(lijnenVoorraad.VerwijderEersteLijn());    
@@ -74,7 +74,7 @@ namespace Waterskibaan
                 Console.WriteLine(s.AantalRondenNogTeGaan);
 
             Console.WriteLine(wachtrijInstructie.ToString());
-        }
+        }*/
 
     }
 

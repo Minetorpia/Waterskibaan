@@ -15,9 +15,9 @@ namespace Waterskibaan
 
         private Waterskibaan waterskibaan = new Waterskibaan();
 
-        private static Timer gameTimer;
-        private static Timer instructieTimer;
-        private static Timer instructieAfgelopenTimer;
+        public Timer gameTimer;
+        public Timer instructieTimer;
+        public Timer instructieAfgelopenTimer;
         
         public event NieuweBezoekerHandler NieuweBezoeker;
         public event InstructieAfgelopenHandler InstructieAfgelopen;
@@ -56,7 +56,7 @@ namespace Waterskibaan
 
         public Timer CreateAndSetTimer(int ms, ElapsedEventHandler elapsedEventHandler)
         {
-            Timer timer = new Timer(ms/10);
+            Timer timer = new Timer(ms);
             timer.Elapsed += elapsedEventHandler;
             timer.AutoReset = true;
             timer.Enabled = true;

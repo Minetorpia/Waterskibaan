@@ -40,7 +40,10 @@ namespace Waterskibaan
             foreach (Lijn lijn in Lijnen)
             {
                 if (lijn.PositieOpDeKabel != 9)
+                {
                     lijn.PositieOpDeKabel += 1;
+                    lijn.Sporter.Move();
+                }
                 else
                 {
                     /*Check if sporter still allowed another round*/
