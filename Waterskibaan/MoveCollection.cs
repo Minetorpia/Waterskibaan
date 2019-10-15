@@ -64,6 +64,11 @@ namespace Waterskibaan
         {
             return MoveCollection.DoMove(90, 5, "Jumped! and earned 5 points!");
         }
+
+        public override string ToString()
+        {
+            return "Jumped! and earned 5 points!";
+        }
     }
 
     public class OneLegMove : IMoves
@@ -71,6 +76,11 @@ namespace Waterskibaan
         public int Move()
         {
             return MoveCollection.DoMove(70, 10, "One leg move! Earned 10 points!");
+        }
+
+        public override string ToString()
+        {
+            return "One leg move! Earned 10 points!";
         }
     }
 
@@ -80,6 +90,11 @@ namespace Waterskibaan
         {
             return MoveCollection.DoMove(50, 15, "One hand on cable! Earned 15 points!");
         }
+
+        public override string ToString()
+        {
+            return "One hand on cable! Earned 15 points!";
+        }
     }
 
     public class SaltoMove : IMoves
@@ -88,6 +103,11 @@ namespace Waterskibaan
         {
             return MoveCollection.DoMove(15, 30, "Wow! Salto! Earned 30 points!");
         }
+
+        public override string ToString()
+        {
+            return "Wow! Salto! Earned 30 points!";
+        }
     }
 
     public class DoubleSalto : IMoves
@@ -95,6 +115,11 @@ namespace Waterskibaan
         public int Move()
         {
             return MoveCollection.DoMove(5, 60, "Incredible job! Double salto!! Earned 60 points!");
+        }
+
+        public override string ToString()
+        {
+            return "Incredible job! Double salto!! Earned 60 points!";
         }
     }
 }

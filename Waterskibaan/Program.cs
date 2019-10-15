@@ -10,14 +10,12 @@ namespace Waterskibaan
     {
         static void Main(string[] args)
         {
-            /*TestOpdracht2();
-            TestOpdracht3();
-            TestOpdracht4();*/
-            TestOpdracht8();
+            Game game = new Game();
+            game.Initialize();
 
         }
 
-        private static void TestOpdracht2()
+       /* private static void TestOpdracht2()
         {
             Kabel kabel = new Kabel();
             for (int i=0; i<9;i++)
@@ -27,9 +25,9 @@ namespace Waterskibaan
                 Lijn l = kabel.VerwijderLijnVanKabel();
             }
             Console.WriteLine(kabel.ToString());
-        }
+        }*/
 
-        private static void TestOpdracht3()
+        /*private static void TestOpdracht3()
         {
             LijnenVoorraad lijnenVoorraad = new LijnenVoorraad();
             Console.WriteLine(lijnenVoorraad.VerwijderEersteLijn());    
@@ -60,7 +58,24 @@ namespace Waterskibaan
 
             waterskibaan.SporterStart(sporter);
             waterskibaan.VerplaatsKabel();
-
         }
+
+        private static void TestOpdracht9()
+        {
+            Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), "rood");
+            Sporter sporter1 = new Sporter(MoveCollection.GetWillekeurigeMoves(), "blauw");
+
+
+            WachtrijInstructie wachtrijInstructie = new WachtrijInstructie();
+            wachtrijInstructie.SporterNeemPlaatsInRij(sporter);
+            wachtrijInstructie.SporterNeemPlaatsInRij(sporter1);
+
+            foreach (Sporter s in wachtrijInstructie.GetAlleSporters())
+                Console.WriteLine(s.AantalRondenNogTeGaan);
+
+            Console.WriteLine(wachtrijInstructie.ToString());
+        }*/
+
     }
+
 }

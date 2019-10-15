@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Waterskibaan
+    public class Waterskibaan
     {
         private LijnenVoorraad lijnenVoorraad = new LijnenVoorraad();
         private Kabel kabel = new Kabel();
+        public LijnenVoorraad LijnenVoorraad { get => lijnenVoorraad; private set => lijnenVoorraad = value; }
+        public Kabel Kabel {
+            get { return kabel; }
+            private set { kabel = value; } }
 
         public Waterskibaan()
         {
@@ -22,8 +26,12 @@ namespace Waterskibaan
 
         public void VerplaatsKabel()
         {
+            Lijn removableLijn = kabel.VerwijderLijnVanKabel();
+
+            if (removableLijn != null)
+                lijnenVoorraad.LijnToevoegenAanRij(removableLijn);
+
             kabel.VerschuifLijnen();
-            lijnenVoorraad.LijnToevoegenAanRij(kabel.VerwijderLijnVanKabel());
         }
 
 
@@ -32,8 +40,8 @@ namespace Waterskibaan
             string returnString = "";
             returnString += "--- Overzicht Waterskibaan:---\n";
             returnString += lijnenVoorraad.ToString();
-            returnString += kabel.ToString();
-            returnString += "------------------------------";
+            returnString += "\n" + kabel.ToString();
+            returnString += "\n------------------------------";
             return returnString;
         }
 
@@ -46,15 +54,14 @@ namespace Waterskibaan
                     throw new Exception("Zwemvest or Skies is null");
 
                 Lijn nieuweLijn = lijnenVoorraad.VerwijderEersteLijn();
-                nieuweLijn.Sporter = sp;
+                
 
                 Random r = new Random();
-                sp.AantalRondenNogTeGaan = r.Next(1, 2);
+                sp.AantalRondenNogTeGaan = r.Next(1,3);
+                nieuweLijn.Sporter = sp;
 
                 kabel.NeemLijnInGebruik(nieuweLijn);
             }
-            
-            
         }
     }
 }
