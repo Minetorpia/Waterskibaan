@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
+    public delegate void PlayerRoundFinishedHandler(SpelerFinishedArgs args);
+
     public class Game
     {
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
@@ -14,6 +16,7 @@ namespace Waterskibaan
         public delegate void LijnenVerplaatstHandler();
 
         private Waterskibaan waterskibaan = new Waterskibaan();
+        public Logger Logger { get; set; } = new Logger();
 
         public Timer gameTimer;
         public Timer instructieTimer;
@@ -34,21 +37,15 @@ namespace Waterskibaan
         public void Initialize()
         {
             NieuweBezoeker += WachtrijInstructie.NieuweBezoekerHandler;
+            NieuweBezoeker += Logger.NieuweBezoekerHandler;
+
             InstructieAfgelopen += InstructieGroep.InstructieAfgelopenHandler;
+
+            waterskibaan.Kabel.PlayerRoundFinished += Logger.PlayerFinishedHandler;
 
             gameTimer = CreateAndSetTimer(3000, OnTimedEventNewBezoeker);
             instructieTimer = CreateAndSetTimer(20000, OnTimedEventInstructieAfgelopen);
             instructieAfgelopenTimer = CreateAndSetTimer(4000, OnTimedEventVerplaatsLijnen);
-/*
-            Console.WriteLine("\nPress the Enter key to exit the application...\n");
-            Console.ReadLine();
-            gameTimer.Stop();
-            gameTimer.Dispose();
-            instructieTimer.Stop();
-            instructieTimer.Dispose();
-            instructieAfgelopenTimer.Stop();
-            instructieAfgelopenTimer.Dispose();*/
-
 
             Console.WriteLine("Terminating the application...");
         }
@@ -69,6 +66,7 @@ namespace Waterskibaan
         {
             NieuweBezoekerArgs nieuweBezoekerArgs = new NieuweBezoekerArgs();
             nieuweBezoekerArgs.Sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), "kleur");
+            nieuweBezoekerArgs.Sporter.Id = Logger.Bezoekers.Count() + 1;
             NieuweBezoeker(nieuweBezoekerArgs);
         }
 
@@ -121,8 +119,5 @@ namespace Waterskibaan
             int total = WachtrijInstructie.GetAlleSporters().Count + InstructieGroep.GetAlleSporters().Count + WachtrijStarten.GetAlleSporters().Count;
             Console.WriteLine($"Totaal: {total}" + "\n");
         }
-
-
-
     }
 }

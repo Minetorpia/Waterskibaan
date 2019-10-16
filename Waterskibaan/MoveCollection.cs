@@ -17,7 +17,7 @@ namespace Waterskibaan
 
             for (int i = 0; i < movesAmount; i++)
             {
-                int randomMove = random.Next(1, 5);
+                int randomMove = random.Next(1, 6);
 
                 switch (randomMove)
                 {
@@ -60,6 +60,11 @@ namespace Waterskibaan
 
     public class JumpMove : IMoves
     {
+        public string GetMoveNaam()
+        {
+            return "Springen";
+        }
+
         public int Move()
         {
             return MoveCollection.DoMove(90, 5, "Jumped! and earned 5 points!");
@@ -73,6 +78,11 @@ namespace Waterskibaan
 
     public class OneLegMove : IMoves
     {
+        public string GetMoveNaam()
+        {
+            return "Eén been";
+        }
+
         public int Move()
         {
             return MoveCollection.DoMove(70, 10, "One leg move! Earned 10 points!");
@@ -95,6 +105,11 @@ namespace Waterskibaan
         {
             return "One hand on cable! Earned 15 points!";
         }
+
+        public string GetMoveNaam()
+        {
+            return "Eén hand op de kabel";
+        }
     }
 
     public class SaltoMove : IMoves
@@ -108,10 +123,20 @@ namespace Waterskibaan
         {
             return "Wow! Salto! Earned 30 points!";
         }
+
+        public string GetMoveNaam()
+        {
+            return "Salto";
+        }
     }
 
     public class DoubleSalto : IMoves
     {
+        public string GetMoveNaam()
+        {
+            return "Dubbele salto";
+        }
+
         public int Move()
         {
             return MoveCollection.DoMove(5, 60, "Incredible job! Double salto!! Earned 60 points!");

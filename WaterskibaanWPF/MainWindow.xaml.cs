@@ -22,14 +22,17 @@ namespace WaterskibaanWPF
     public partial class MainWindow : Window
     {
         private Game game;
+        private AdminDashboardWindow adminDashboardWindow;
+
         public MainWindow()
         {
+            adminDashboardWindow = new AdminDashboardWindow();
             InitializeComponent();
             game = new Game();
             game.NieuweBezoeker += NieuweBezoekerHandler;
+            game.NieuweBezoeker += adminDashboardWindow.NieuweBezoekerHandler;
             game.Initialize();
             Console.WriteLine("tetst");
-            
         }
 
 
@@ -107,5 +110,14 @@ namespace WaterskibaanWPF
             game.instructieTimer.Interval *= 2;
             game.instructieAfgelopenTimer.Interval *= 2;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            adminDashboardWindow.Game = game;
+            adminDashboardWindow.Show();
+        }
+
+
+        
     }
 }

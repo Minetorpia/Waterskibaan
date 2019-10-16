@@ -8,6 +8,8 @@ namespace Waterskibaan
 {
     public class Kabel
     {
+        public event PlayerRoundFinishedHandler PlayerRoundFinished;
+
         private LinkedList<Lijn> lijnen = new LinkedList<Lijn>();
 
         public LinkedList<Lijn> Lijnen { get => lijnen; set => lijnen = value; }
@@ -51,6 +53,9 @@ namespace Waterskibaan
                     lijn.Sporter.AantalRondenNogTeGaan--;
                     Lijnen.RemoveLast();
                     NeemLijnInGebruik(lijn);
+                    SpelerFinishedArgs spelerFinishedArgs = new SpelerFinishedArgs();
+                    spelerFinishedArgs.sporter = lijn.Sporter;
+                    PlayerRoundFinished(spelerFinishedArgs);
                     break;
                 }
             }
@@ -64,6 +69,10 @@ namespace Waterskibaan
                 lastLijn = Lijnen.Last();
                 if ((Lijnen.Last().PositieOpDeKabel == 9 || Lijnen.Last().PositieOpDeKabel == 0) && lastLijn.Sporter.AantalRondenNogTeGaan == 0)
                 {
+                    SpelerFinishedArgs spelerFinishedArgs = new SpelerFinishedArgs();
+                    spelerFinishedArgs.sporter = lastLijn.Sporter;
+                    PlayerRoundFinished(spelerFinishedArgs);
+                    lastLijn.Sporter.AantalRondenNogTeGaan--;
                     Lijnen.RemoveLast();
                     return lastLijn;
                 }

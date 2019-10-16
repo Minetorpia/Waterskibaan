@@ -8,12 +8,12 @@ namespace Waterskibaan
 {
     public class Sporter : IMoves
     {
-        public int AantalRondenNogTeGaan { get; set; }
+        public int AantalRondenNogTeGaan { get; set; } = -1;
         public Zwemvest Zwemvest { get; set; }
         public Tuple<byte, byte, byte> KledingKleur { get; set; }
         public Skies Skies { get; set; }
         public List<IMoves> Moves { get; set; }
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public IMoves HuidigeMove;
         public int Score { get; set; }
         public Random Random { get; set; }
@@ -24,7 +24,6 @@ namespace Waterskibaan
             Moves = moves;
 
             KledingKleur = new Tuple<byte, byte, byte>(Convert.ToByte(Random.Next(0, 256)), Convert.ToByte(Random.Next(0, 256)), Convert.ToByte(Random.Next(0, 256)));
-            Id = Random.Next(0, 101);
         }
 
         public int Move()
@@ -44,6 +43,9 @@ namespace Waterskibaan
             return totalScore;
         }
 
-
+        public string GetMoveNaam()
+        {
+            return "Is speler";
+        }
     }
 }

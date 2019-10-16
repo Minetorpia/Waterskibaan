@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    public interface IMoves
+    public class SpelerFinishedArgs : EventArgs
     {
-        int Move();
-        string GetMoveNaam();
+        public Sporter sporter { get; set; }
     }
 }
